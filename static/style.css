@@ -1,0 +1,9 @@
+body { background: #f5f8f5; color: #203027; }
+.hero { background: linear-gradient(120deg, #08783f, #35a66b); color: white; }
+.stat-card, .content-card, .form-card { background: white; border: 1px solid #e5eee7; border-radius: 16px; padding: 22px; box-shadow: 0 5px 18px rgba(25,70,40,.05); }
+.stat-card h2 { color: #16834b; font-weight: 800; font-size: 2rem; }
+.stat-card p { color: #68766d; margin: 0; }
+.form-card { max-width: 540px; padding: 30px; }
+.content-card { padding: 20px; }
+.table th { color: #607067; font-size: .9rem; }
+footer { font-size: .9rem; }

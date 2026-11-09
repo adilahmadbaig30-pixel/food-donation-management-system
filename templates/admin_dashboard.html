@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<h2 class="fw-bold mb-4">Admin dashboard</h2>
+<div class="row g-3 mb-4">
+{% for label,value in [('Donations',stats.donations),('Available',stats.available),('Requests',stats.requests),('Users',stats.users),('Collected',stats.collected)] %}
+<div class="col-6 col-lg"><div class="stat-card"><h2>{{ value }}</h2><p>{{ label }}</p></div></div>
+{% endfor %}
+</div>
+<h4 class="mb-3">Registered users</h4>
+<div class="content-card table-responsive mb-4"><table class="table align-middle mb-0"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Verified</th><th>Action</th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ u.role }}</td><td>{{ 'Yes' if u.verified else 'No' }}</td><td>
+{% if u.role == 'receiver' and not u.verified %}<form method="post" action="{{ url_for('verify_user', user_id=u.id) }}"><button class="btn btn-sm btn-success">Verify</button></form>{% else %}—{% endif %}
+</td></tr>{% endfor %}
+</tbody></table></div>
+<h4 class="mb-3">All donations</h4>
+<div class="content-card table-responsive"><table class="table mb-0"><thead><tr><th>Food</th><th>Donor</th><th>Quantity</th><th>Location</th><th>Status</th><th>Expiry</th></tr></thead><tbody>
+{% for d in donations %}<tr><td>{{ d.food_name }}</td><td>{{ d.donor_name }}</td><td>{{ d.quantity }}</td><td>{{ d.pickup_location }}</td><td>{{ d.status }}</td><td>{{ d.expiry }}</td></tr>
+{% else %}<tr><td colspan="6">No donations yet.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

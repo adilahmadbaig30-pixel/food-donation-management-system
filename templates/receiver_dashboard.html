@@ -1,0 +1,21 @@
+{% extends "base.html" %}{% block title %}Receiver Dashboard{% endblock %}
+{% block content %}
+<h2 class="fw-bold mb-1">Available food</h2><p class="text-muted mb-4">Find donations and send a request to the donor.</p>
+<div class="row g-3 mb-5">
+{% for d in donations %}
+<div class="col-md-6 col-lg-4"><div class="content-card h-100">
+<span class="badge bg-success-subtle text-success mb-2">{{ d.category }}</span><h5>{{ d.food_name }}</h5>
+<p class="mb-1">Quantity: {{ d.quantity }}</p><p class="mb-1">Donor: {{ d.donor_name }}</p><p class="mb-1">Pickup: {{ d.pickup_location }}</p><p class="small text-muted">Deadline: {{ d.expiry }}</p>
+{% if d.description %}<p>{{ d.description }}</p>{% endif %}
+<form method="post" action="{{ url_for('request_donation', donation_id=d.id) }}">
+<input class="form-control form-control-sm mb-2" name="message" placeholder="Optional message to donor">
+<button class="btn btn-success w-100 btn-sm">Request this food</button></form>
+</div></div>
+{% else %}<p class="text-muted">No available donations right now.</p>{% endfor %}
+</div>
+<h4 class="mb-3">My requests</h4>
+<div class="content-card table-responsive"><table class="table mb-0"><thead><tr><th>Food</th><th>Status</th><th>Action</th></tr></thead><tbody>
+{% for r in my_requests %}<tr><td>{{ r.food_name }}</td><td>{{ r.status }}</td><td>{% if r.status == 'accepted' %}<form method="post" action="{{ url_for('mark_collected', donation_id=r.donation_id) }}"><button class="btn btn-sm btn-success">Confirm collection</button></form>{% else %}—{% endif %}</td></tr>
+{% else %}<tr><td colspan="3" class="text-muted">You have not requested any donations.</td></tr>{% endfor %}
+</tbody></table></div>
+{% endblock %}

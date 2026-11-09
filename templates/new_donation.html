@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block title %}Add Donation{% endblock %}
+{% block content %}
+<div class="form-card mx-auto">
+<h2 class="fw-bold mb-3">Post a food donation</h2>
+<form method="post">
+  <label class="form-label">Food name</label><input class="form-control mb-3" name="food_name" placeholder="e.g. Vegetable rice" required>
+  <label class="form-label">Category</label>
+  <select class="form-select mb-3" name="category" required>
+    <option value="">Choose category</option><option>Cooked meal</option><option>Bakery</option><option>Fruit and vegetables</option><option>Packaged food</option><option>Other</option>
+  </select>
+  <label class="form-label">Quantity (servings / packs)</label><input class="form-control mb-3" type="number" name="quantity" min="1" required>
+  <label class="form-label">Pickup location</label><input class="form-control mb-3" name="pickup_location" required>
+  <label class="form-label">Expiry / safe pickup deadline</label><input class="form-control mb-3" type="datetime-local" name="expiry" required>
+  <label class="form-label">Description and handling information</label><textarea class="form-control mb-4" name="description" rows="3"></textarea>
+  <button class="btn btn-success w-100">Publish donation</button>
+</form>
+</div>{% endblock %}

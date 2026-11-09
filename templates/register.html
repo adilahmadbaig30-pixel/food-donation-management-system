@@ -1,0 +1,15 @@
+{% extends "base.html" %}{% block title %}Register{% endblock %}
+{% block content %}
+<div class="form-card mx-auto">
+<h2 class="fw-bold mb-3">Create an account</h2>
+<form method="post">
+  <label class="form-label">Full name</label><input class="form-control mb-3" name="name" required>
+  <label class="form-label">Email</label><input class="form-control mb-3" type="email" name="email" required>
+  <label class="form-label">Password (minimum 8 characters)</label><input class="form-control mb-3" type="password" name="password" minlength="8" required>
+  <label class="form-label">Account type</label>
+  <select class="form-select mb-4" name="role" required>
+    <option value="donor">Food donor</option><option value="receiver">NGO / Receiver</option>
+  </select>
+  <button class="btn btn-success w-100">Create account</button>
+</form>
+</div>{% endblock %}

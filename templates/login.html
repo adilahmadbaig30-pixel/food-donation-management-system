@@ -1,0 +1,11 @@
+{% extends "base.html" %}{% block title %}Login{% endblock %}
+{% block content %}
+<div class="form-card mx-auto">
+<h2 class="fw-bold mb-3">Welcome back</h2>
+<form method="post">
+  <label class="form-label">Email</label><input class="form-control mb-3" type="email" name="email" required>
+  <label class="form-label">Password</label><input class="form-control mb-4" type="password" name="password" required>
+  <button class="btn btn-success w-100">Login</button>
+</form>
+<p class="small text-muted mt-3 mb-0">Demo admin: admin@foodshare.com / Admin123!</p>
+</div>{% endblock %}
